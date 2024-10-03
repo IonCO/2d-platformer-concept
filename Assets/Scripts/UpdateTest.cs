@@ -8,22 +8,40 @@ using UnityEngine.Events;
 public class UpdateTest : MonoBehaviour
 {
     [SerializeField] private List<UpdateEvent> StoredTestEvents;
-    private Dictionary<KeyCode, UnityEvent> _updateEvents = new Dictionary<KeyCode, UnityEvent>();
+    [SerializeField] private List<UnityEvent> _onAwakeEvents, _onUpdateEvents, _onFixedUpdateEvents;
+    private Dictionary<KeyCode, UnityEvent> _updateOnKeyEvents = new Dictionary<KeyCode, UnityEvent>();
+
+    private void Awake()
+    {
+        if (_onAwakeEvents.Count <= 0) return;
+        foreach (var uevent in _onUpdateEvents) uevent?.Invoke();
+    }
 
     private void Start()
     {
         foreach (var stored in StoredTestEvents) 
-            _updateEvents.Add(stored.AssignedKey, stored.AssignedEvent);
+            _updateOnKeyEvents.Add(stored.AssignedKey, stored.AssignedEvent);
     }
 
-    void Update()
+    private void Update()
     {
-        if (_updateEvents.Count <= 0) return;
-        foreach (var holder in _updateEvents
-                     .Where(holder => Input.GetKeyDown(holder.Key)))
+        if (_updateOnKeyEvents.Count > 0)
         {
-            holder.Value?.Invoke();
+            foreach (var holder in _updateOnKeyEvents
+                         .Where(holder => Input.GetKeyDown(holder.Key)))
+            {
+                holder.Value?.Invoke();
+            }    
         }
+
+        if (_onUpdateEvents.Count <= 0) return;
+        foreach (var uevent in _onUpdateEvents) uevent?.Invoke();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_onFixedUpdateEvents.Count <= 0) return;
+        foreach (var uevent in _onFixedUpdateEvents) uevent?.Invoke();
     }
 }
 

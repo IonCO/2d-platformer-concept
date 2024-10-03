@@ -529,7 +529,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -558,47 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 981693715}
   _moveSpeed: 250
-  _moveControls:
-    m_Name: Move Controls
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: bd10f3b7-2eb2-4501-891a-039fdfd304e9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: Movement
-      m_Id: 33d09cf3-f406-4735-9aad-0bc67264d22d
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move Controls
-      m_Flags: 4
-    - m_Name: Left
-      m_Id: 55132da9-ff70-47b3-a6d6-e4a1224e1022
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move Controls
-      m_Flags: 8
-    - m_Name: Right
-      m_Id: ca58905f-c7b2-4779-bddb-2af34b89a659
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move Controls
-      m_Flags: 8
-    - m_Name: 
-      m_Id: c7d27d92-0a1f-432b-b284-a1ac42b23de6
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move Controls
-      m_Flags: 0
-    m_Flags: 0
+  _jumpForce: 300
 --- !u!1 &1299307007
 GameObject:
   m_ObjectHideFlags: 0
